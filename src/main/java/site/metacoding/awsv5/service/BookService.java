@@ -1,16 +1,15 @@
 package site.metacoding.awsv5.service;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import lombok.RequiredArgsConstructor;
 import site.metacoding.awsv5.domain.Book;
 import site.metacoding.awsv5.domain.BookRepository;
 import site.metacoding.awsv5.web.dto.BookRespDto;
 import site.metacoding.awsv5.web.dto.BookSaveReqDto;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -27,7 +26,6 @@ public class BookService {
     @Transactional(readOnly = true)
     public List<BookRespDto> 책목록보기() {
         List<Book> booksEntity = bookRepository.findAll();
-        System.out.println("사이즈 : " + booksEntity.size());
         return booksEntity.stream()
                 .map((book) -> new BookRespDto(book))
                 .collect(Collectors.toList());

@@ -1,33 +1,22 @@
 package site.metacoding.awsv5.web;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.util.Arrays;
-import java.util.List;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
-
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.test.context.ActiveProfiles;
-
 import site.metacoding.awsv5.domain.Book;
 import site.metacoding.awsv5.domain.BookRepository;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 // select 테스트는 order를 먼저해야 좋다. 
 // @Transactional 어노테이션을 붙이면 스프링 트랜잭션과 JUnit 트랜잭션이 분리된다.
@@ -112,5 +101,4 @@ public class BookApiControllerTest {
         assertEquals("내용3", content);
         assertEquals("메타코딩", author);
     }
-
 }
