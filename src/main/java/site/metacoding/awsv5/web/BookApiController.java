@@ -21,7 +21,7 @@ public class BookApiController {
 
     @GetMapping("/")
     public String home() {
-        return "<h1>aws-v5</h1>";
+        return "<h1>aws-v5-last</h1>";
     }
 
     @PostMapping("/api/book")
