@@ -53,4 +53,4 @@ jobs:
           environment_name: Aws-v5-beanstalk-env
           version_label: deploy-${{steps.current-time.outputs.formattedTime}}
           region: ap-northeast-2
-          deployment_package: aws-v5/docker-compose.yml
+          deployment_package: ./docker-compose.yml
