@@ -36,3 +36,21 @@ jobs:
           docker build ./nginx -t junek3/docker-nginx
           docker push junek3/docker-springboot
           docker push junek3/docker-nginx
+
+      - name: Get current time
+        uses: 1466587594/get-current-time@v2
+        id: current-time
+        with:
+          format: YYYY-MM-DDTHH-mm-ss
+          utcOffset: "+09:00"
+
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v18
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
+          application_name: aws-v5-beanstalk
+          environment_name: Aws-v5-beanstalk-env
+          version_label: deploy-${{steps.current-time.outputs.formattedTime}}
+          region: ap-northeast-2
+          deployment_package: aws-v5/docker-compose.yml
